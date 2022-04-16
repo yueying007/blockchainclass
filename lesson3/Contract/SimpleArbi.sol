@@ -117,7 +117,7 @@ contract SimpleArbi {
     }
 
     // flashloan
-    function flashLoan(address token, uint256 amount) public {
+    function flashLoan(address token, uint256 amount) public onlyOwner {
         RepayData memory _repay_data = RepayData(token, amount);
         ILiquidity(liquidityPool).borrow(token, amount,
             abi.encodeWithSelector(this.receiveLoan.selector, abi.encode(_repay_data)));
