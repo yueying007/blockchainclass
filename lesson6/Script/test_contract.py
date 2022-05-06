@@ -30,7 +30,7 @@ def test_contract(contract_address, account, private_key):
 
     data1 = encode_abi(FORMAT, [2, 2, 0, WETH, USDT, Curvepool])
     data2 = encode_abi(FORMAT, [1, 0, 0, USDT, WETH, Uniswappool])
-    tx = contract.functions.execute(data1, data2, to_wei(1, 18))
+    tx = contract.functions.execute([data1, data2], to_wei(1, 18))
 
     # 发送交易
     nonce = w3.eth.getTransactionCount(account)
